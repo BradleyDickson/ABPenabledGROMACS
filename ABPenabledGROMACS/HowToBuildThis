@@ -1,0 +1,29 @@
+i) Run your configure command with whatever options you need to use. You MUST use --prefix=PATH-TO-THIS-DIRECTORY unles you want to manage links to mdrun in the Run-METHOD directories for your slef.
+
+ii) Run "make clean"
+
+iii) compile hello.f in src/kernel with gfortran -O3 -fbounds-check -c hello.f
+
+iiii) Make these two changes to src/kernel/Makefile
+
+1) Line 144 should read:
+	md_openmm.$(OBJEXT) hello.o 
+2) Line 232 should read:
+LIBS = -lnsl -lm -lgfortran 
+
+iiiii) run "make" and "make install" from the same directory you ran configure
+
+
+Next you need to build a tpr file to run.
+
+Go to the ALANINEsystem directory and use:
+../bin/grompp -f md.mdp -c isob.gro -t isob.cpt -o ala.tpr
+
+This will build a file "ala.tpr" Each time you build this file, the thermostat state will change.
+
+Copy this file into the Run-mABP, Run-WTmetaD, Run-SHUSish directories to run simulations.
+
+
+Finally, you can run with: 
+./mdrun -v -deffnm ala 
+If you are on a compute cluster submitting to a queue, then you will need something more. This is between you and your cluster support.

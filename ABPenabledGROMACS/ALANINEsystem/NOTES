@@ -1,0 +1,5 @@
+to build a new tpr file:
+
+../bin/grompp -f md.mdp -c isob.gro -t isob.cpt -o ala.tpr
+
+then copy this to your run directories

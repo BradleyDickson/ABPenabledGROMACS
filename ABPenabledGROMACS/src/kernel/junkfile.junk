@@ -1,0 +1,112 @@
+!-------Align the reference to the new guy for RMSDs -----------------------
+            !get centers BB only
+            ip=0
+            do i=1,nrest1
+               ip=ip+1
+               do j=1,3
+                  x(2,j,ip)=xr(1,3*i-(3-j))
+               enddo
+            enddo
+            ip=0
+            do i=1,nrest1
+               ip=ip+1
+               do j=1,3
+                  x(1,j,ip)=xx(3*irest(k,i)-(3-j))
+               enddo
+            enddo
+            npart = nrest1
+            nttd = 415
+            sum0=0d0
+            icon=0
+            do i=1,nttd!npart !number of atoms
+               do j=1,3
+                  sum0(j)=sum0(j)+x(1,j,i)
+                  icon=icon+1
+               enddo
+            enddo
+            sum0 = sum0/dble(icon)
+            do j=1,3
+               do i=1,npart
+                  x(1,j,i)=x(1,j,i)-sum0(j)
+               enddo
+            enddo
+            sum1=0d0
+            idon=0d0
+            do i=1,nttd
+               do j=1,3
+                  sum1(j)=sum1(j)+x(2,j,i)
+                  idon=idon+1
+               enddo
+            enddo
+            sum1 = sum1/dble(idon)
+            do j=1,3
+               do i=1,npart
+                  x(2,j,i)=x(2,j,i)-sum1(j)
+               enddo
+            enddo
+            AA=0d0 !matrix A
+            do j=1,3
+               do k=1,3
+                  sum=0d0
+                  do i=1,nttd!npart
+                     sum=sum+x(1,j,i)*x(2,k,i)
+                  enddo
+                  AA(j,k)=sum
+               enddo
+            enddo
+            A1 = AA !store this
+            det = AA(1,1)*(AA(2,2)*AA(3,3)-AA(3,2)*AA(2,3))
+            det = det - AA(1,2)*(AA(2,1)*AA(3,3)-AA(3,1)*AA(2,3))
+            det = det + AA(1,3)*(AA(3,1)*AA(2,3)-AA(2,1)*AA(3,2))
+            call dgesvd('A','A',3,3,AA,3,S,U,3,VT,3,work,30,INF)
+            if(INF.ne.0)then
+               write(*,*) 'INF crash ', INF
+               stop
+            endif
+            AA=0d0!first multiply                   
+            do i=1,3
+               do k=1,3
+                  do j=1,3
+                     AA(i,k)=AA(i,k)+U(i,j)*VT(j,k)
+                  enddo
+               enddo
+            enddo
+            det = AA(1,1)*(AA(2,2)*AA(3,3)-AA(3,2)*AA(2,3))
+            det = det - AA(1,2)*(AA(2,1)*AA(3,3)-AA(3,1)*AA(2,3))
+            det = det + AA(1,3)*(AA(3,1)*AA(2,3)-AA(2,1)*AA(3,2))
+            !make diag 
+            A1=0d0
+            A1(1,1)=1d0
+            A1(2,2)=1d0
+            A1(3,3)=det/dabs(det)
+            AA=0d0!first multiply
+            do i=1,3
+               do k=1,3
+                  do j=1,3
+                     AA(i,k)=AA(i,k)+U(i,j)*A1(j,k) 
+                  enddo
+               enddo
+            enddo
+            A1=0d0!second multiply
+            do i=1,3
+               do j=1,3
+                  do k=1,3
+                     A1(i,j)=A1(i,j)+AA(i,k)*VT(k,j) 
+                  enddo
+               enddo
+            enddo            
+            !A1 hods rotatio
+            AA=0d0
+            AA=A1 !pass to AA
+            !now we need to align x(2 with x(1
+            do i=1,npart
+               do l=1,3
+                  sum=0d0
+                  do k=1,3
+                     sum=sum+AA(l,k)*(x(2,k,i))!already at origin
+                  enddo
+                  dum(l)=sum
+                  x(2,l,i)=dum(l)
+               enddo
+            enddo
+c---------------Finished Align -----------------------------------------

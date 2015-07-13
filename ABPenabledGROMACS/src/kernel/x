@@ -1,0 +1,97 @@
+ABPmd.c:    init_md(fplog,cr,ir,oenv,&t,&t0,&state_global->lambda,&lam0,
+ABPmd.c:                                 NULL : state_global->x);
+ABPmd.c:            snew(f_global,state_global->natoms);
+ABPmd.c:                restore_energyhistory_from_state(mdebin,&state_global->enerhist);
+ABPmd.c:                done_energyhistory(&state_global->enerhist);
+ABPmd.c:                init_energyhistory(&state_global->enerhist);
+ABPmd.c:        update_energyhistory(&state_global->enerhist,mdebin);
+ABPmd.c:                state_global->lambda = rerun_fr.lambda;
+ABPmd.c:                state_global->lambda = lam0 + step*ir->delta_lambda;
+ABPmd.c:            state->lambda = state_global->lambda;
+ABPmd.c:                for(i=0; i<state_global->natoms; i++)
+ABPmd.c:                    copy_rvec(rerun_fr.x[i],state_global->x[i]);
+ABPmd.c:                    for(i=0; i<state_global->natoms; i++)
+ABPmd.c:                        copy_rvec(rerun_fr.v[i],state_global->v[i]);
+ABPmd.c:                    for(i=0; i<state_global->natoms; i++)
+ABPmd.c:                        clear_rvec(state_global->v[i]);
+ABPmd.c:            copy_mat(rerun_fr.box,state_global->box);
+ABPmd.c:            copy_mat(state_global->box,state->box);
+ABPmd.c:            do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+ABPmd.c:                posv[3*i] = state_global->x[i][0];
+ABPmd.c:                posv[3*i+1] = state_global->x[i][1];
+ABPmd.c:                posv[3*i+2] = state_global->x[i][2];
+ABPmd.c://                hellof_( &step,state_global->x,f_global ) ;   
+ABPmd.c://                copy_rvec(dumb,state_global->x[i]);
+ABPmd.c://                              state_global->x, state->x);
+ABPmd.c:                        state_global->ekinstate.bUpToDate = FALSE;
+ABPmd.c:                        update_ekinstate(&state_global->ekinstate,ekind);
+ABPmd.c:                        state_global->ekinstate.bUpToDate = TRUE;
+ABPmd.c:                    update_energyhistory(&state_global->enerhist,mdebin);
+ABPmd.c:                    do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+ABPmd.c:                                    state_global->x,state_global->v,
+ELmd.c:    init_md(fplog,cr,ir,oenv,&t,&t0,&state_global->lambda,&lam0,
+ELmd.c:                                 NULL : state_global->x);
+ELmd.c:            snew(f_global,state_global->natoms);
+ELmd.c:                restore_energyhistory_from_state(mdebin,&state_global->enerhist);
+ELmd.c:                done_energyhistory(&state_global->enerhist);
+ELmd.c:                init_energyhistory(&state_global->enerhist);
+ELmd.c:        update_energyhistory(&state_global->enerhist,mdebin);
+ELmd.c:                state_global->lambda = rerun_fr.lambda;
+ELmd.c:                state_global->lambda = lam0 + step*ir->delta_lambda;
+ELmd.c:            state->lambda = state_global->lambda;
+ELmd.c:                for(i=0; i<state_global->natoms; i++)
+ELmd.c:                    copy_rvec(rerun_fr.x[i],state_global->x[i]);
+ELmd.c:                    for(i=0; i<state_global->natoms; i++)
+ELmd.c:                        copy_rvec(rerun_fr.v[i],state_global->v[i]);
+ELmd.c:                    for(i=0; i<state_global->natoms; i++)
+ELmd.c:                        clear_rvec(state_global->v[i]);
+ELmd.c:            copy_mat(rerun_fr.box,state_global->box);
+ELmd.c:            copy_mat(state_global->box,state->box);
+ELmd.c:                posv[3*i] = state_global->x[i][0];
+ELmd.c:                posv[3*i+1] = state_global->x[i][1];
+ELmd.c:                posv[3*i+2] = state_global->x[i][2];
+ELmd.c://                hellof_( &step,state_global->x,f_global ) ;   
+ELmd.c:                copy_rvec(dumb,state_global->x[i]);
+ELmd.c:                              state_global->x, state->x);
+ELmd.c:                        state_global->ekinstate.bUpToDate = FALSE;
+ELmd.c:                        update_ekinstate(&state_global->ekinstate,ekind);
+ELmd.c:                        state_global->ekinstate.bUpToDate = TRUE;
+ELmd.c:                    update_energyhistory(&state_global->enerhist,mdebin);
+ELmd.c:                    do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+ELmd.c:                                    state_global->x,state_global->v,
+md.c:    init_md(fplog,cr,ir,oenv,&t,&t0,&state_global->lambda,&lam0,
+md.c:                                 NULL : state_global->x);
+md.c:            snew(f_global,state_global->natoms);
+md.c:                restore_energyhistory_from_state(mdebin,&state_global->enerhist);
+md.c:                done_energyhistory(&state_global->enerhist);
+md.c:                init_energyhistory(&state_global->enerhist);
+md.c:        update_energyhistory(&state_global->enerhist,mdebin);
+md.c:                state_global->lambda = rerun_fr.lambda;
+md.c:                state_global->lambda = lam0 + step*ir->delta_lambda;
+md.c:            state->lambda = state_global->lambda;
+md.c:                for(i=0; i<state_global->natoms; i++)
+md.c:                    copy_rvec(rerun_fr.x[i],state_global->x[i]);
+md.c:                    for(i=0; i<state_global->natoms; i++)
+md.c:                        copy_rvec(rerun_fr.v[i],state_global->v[i]);
+md.c:                    for(i=0; i<state_global->natoms; i++)
+md.c:                        clear_rvec(state_global->v[i]);
+md.c:            copy_mat(rerun_fr.box,state_global->box);
+md.c:            copy_mat(state_global->box,state->box);
+md.c:          do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+md.c:                posv[3*i] = state_global->x[i][0];
+md.c:                posv[3*i+1] = state_global->x[i][1];
+md.c:                posv[3*i+2] = state_global->x[i][2];
+md.c://                hellof_( &step,state_global->x,f_global ) ;   
+md.c:                copy_rvec(dumb,state_global->x[i]);
+md.c://                              state_global->x, state->x);
+md.c:                        state_global->ekinstate.bUpToDate = FALSE;
+md.c:                        update_ekinstate(&state_global->ekinstate,ekind);
+md.c:                        state_global->ekinstate.bUpToDate = TRUE;
+md.c:                    update_energyhistory(&state_global->enerhist,mdebin);
+md.c:                    do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+md.c:                                    state_global->x,state_global->v,
+md_openmm.c:    init_md(fplog,cr,ir,oenv,&t,&t0,&state_global->lambda,&lam0,
+md_openmm.c:            restore_energyhistory_from_state(mdebin,&state_global->enerhist);
+md_openmm.c:        update_energyhistory(&state_global->enerhist,mdebin);
+md_openmm.c:                    do_pbc_mtop(fplog,ir->ePBC,state->box,top_global,state_global->x);
+md_openmm.c:                                    state_global->x,state_global->v,

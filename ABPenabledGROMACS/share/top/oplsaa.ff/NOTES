@@ -1,0 +1,28 @@
+Atom types exist (atomtypes.atp)
+
+ opls_393   30.97376  ; P    dimethylphosphate anion  UA - see #440 for AA
+
+ opls_394   15.99940  ; O(=) dimethylphosphate anion  UA - see #440 for AA
+
+ opls_395   15.99940  ; O(-) dimethylphosphate anion  UA - see #440 for AA
+
+bond params (ffbonded.itp)
+
+  O     P       1    0.14800   439320.0   ;
+ looks like this is the same for all O- and O=
+ i guess they are all 394 types?
+
+charges are set in aminoacids.rtp
+
+...bond angles? diheds?
+
+there is this in ffbonded
+  HO     OH     P       1   108.500    376.560   ; SUG(OL)
+...infact there are several entries here. 
+
+1) build the aminoacids.rtp entry and conform to opls_number scheme
+2) check ffbonded for binds, angles, etc 
+
+...looks like P-all bonds are defined in ffbonded. ffnon- has LJ and charges, which I fixed.
+
+Things look good but I need to rename the O2 atoms as they might be read as terminal

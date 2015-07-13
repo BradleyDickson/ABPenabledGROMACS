@@ -1,0 +1,440 @@
+[ MLZ ]
+ [ atoms ]
+;  nr   type  resnr resid  atom  cgnr  charge  mass
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     2
+   CD   CH2     0.00000     2
+   CE   CH2     0.00000     3
+   NZ    NT    -0.28700     3
+   HZ     H     0.28700     3
+   CH   CH3     0.00000     4
+    C     C       0.380     5
+    O     O      -0.380     5    
+ [ bonds ]
+; ai  aj  fu    c0, c1, ...
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD    CE    gb_26   
+   CE    NZ    gb_20   
+   NZ    HZ    gb_2    
+   NZ    CH    gb_20  
+ [ angles ]
+; ai  aj  ak  fu    c0, c1, ...
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD    CE     ga_14   
+   CD    CE    NZ     ga_14   
+   CE    NZ    HZ     ga_10   
+   CE    NZ    CH     ga_14   
+   HZ    NZ    CH     ga_10   
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD    CE     gd_17   
+   CG    CD    CE    NZ     gd_17   
+   CD    CE    NZ    CH     gd_17      
+
+[ MLY ]
+ [ atoms ]
+;  nr  type  resnr resid  atom  cgnr  charge  mass
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     1
+   CD   CH2     0.08500     2
+   CE   CH2     0.08500     2
+   NZ    NT    -0.28000     2
+   CH1  CH3     0.05500     2
+   CH2  CH3     0.05500     2
+    C     C       0.380     3
+    O     O      -0.380     3    
+ [ bonds ]
+; ai  aj  fu    c0, c1, ...
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD    CE    gb_26   
+   CE    NZ    gb_20   
+   NZ    CH1   gb_20    
+   NZ    CH2   gb_20  
+ [ angles ]
+; ai  aj  ak  fu    c0, c1, ...
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD    CE     ga_14   
+   CD    CE    NZ     ga_14   
+   CE    NZ    CH1    ga_14   
+   CE    NZ    CH2    ga_14
+   CH1   NZ    CH2    ga_14   
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD    CE     gd_17   
+   CG    CD    CE    NZ     gd_17   
+   CD    CE    NZ    CH1    gd_17 
+ 
+[ M3L ]
+ [ atoms ]
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     2
+   CD   CH2     0.00000     2
+   CE   CH2     0.10500     3
+   NZ    NL     0.69310     3
+  CH1   CH3     0.06730     3
+  CH2   CH3     0.06730     3
+  CH3   CH3     0.06730     3
+    C     C       0.380     4
+    O     O      -0.380     4
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD    CE    gb_26   
+   CE    NZ    gb_20   
+   NZ   CH1    gb_20   
+   NZ   CH2    gb_20   
+   NZ   CH3    gb_20   
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD    CE     ga_14   
+   CD    CE    NZ     ga_14   
+   CE    NZ   CH1     ga_14   
+   CE    NZ   CH2     ga_14   
+   CE    NZ   CH3     ga_14   
+  CH1    NZ   CH2     ga_14    
+  CH1    NZ   CH3     ga_14    
+  CH2    NZ   CH3     ga_14    
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD    CE     gd_17   
+   CG    CD    CE    NZ     gd_17   
+   CD    CE    NZ   CH1     gd_17   
+   
+[ MLZH ]
+ [ atoms ]
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     2
+   CD   CH2     0.00000     2
+   CE   CH2     0.12700     3
+   NZ    NL     0.12900     3
+  HZ1     H     0.30850     3
+  HZ2     H     0.30850     3
+   CH   CH3     0.12700     3
+    C     C       0.380     4
+    O     O      -0.380     4
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD    CE    gb_26   
+   CE    NZ    gb_20   
+   NZ   HZ1    gb_2    
+   NZ   HZ2    gb_2    
+   NZ    CH    gb_20    
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD    CE     ga_14   
+   CD    CE    NZ     ga_14   
+   CE    NZ   HZ1     ga_10   
+   CE    NZ   HZ2     ga_10   
+   CE    NZ    CH     ga_14   
+  HZ1    NZ   HZ2     ga_9    
+  HZ1    NZ    CH     ga_10    
+  HZ2    NZ    CH     ga_10    
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD    CE     gd_17   
+   CG    CD    CE    NZ     gd_17   
+   CD    CE    NZ    CH     gd_17   
+
+[ MLYH ]
+ [ atoms ]
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     2
+   CD   CH2     0.00000     2
+   CE   CH2     0.12700     3
+   NZ    NL     0.12900     3
+   HZ     H     0.49000     3
+  CH1   CH3     0.12700     3
+  CH2   CH3     0.12700     3
+    C     C       0.380     4
+    O     O      -0.380     4
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD    CE    gb_26   
+   CE    NZ    gb_20   
+   NZ    HZ    gb_2    
+   NZ   CH1    gb_20    
+   NZ   CH2    gb_20    
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD    CE     ga_14   
+   CD    CE    NZ     ga_14   
+   CE    NZ    HZ     ga_10   
+   CE    NZ   CH1     ga_14   
+   CE    NZ   CH2     ga_14   
+   HZ    NZ   CH1     ga_10   
+   HZ    NZ   CH2     ga_10    
+  CH1    NZ   CH2     ga_14    
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD    CE     gd_17   
+   CG    CD    CE    NZ     gd_17   
+   CD    CE    NZ   CH1     gd_17   
+   
+[ GPE ]
+ [ atoms ]
+    N     N    -0.28000     0
+    H     H     0.28000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG   CH2     0.00000     1
+   CD     C     0.38000     2
+  OE1     O    -0.38000     2
+  NE2     N    -0.28000     3
+  HE2     H     0.28000     3
+   CZ   CH2     0.00000     4
+   CH   CH2     0.00000     4
+   OF    OA    -0.36000     5
+    P     P     0.99000     5
+  O1P    OM    -0.63500     5
+  O2P    OM    -0.63500     5
+   OI    OA    -0.36000     5
+   CK   CH2     0.00000     6
+   CL   CH1     0.15000     7
+  OM1    OA    -0.54800     7
+  HM1     H     0.39800     7
+  CM2   CH2     0.15000     8
+   ON    OA    -0.54800     8
+   HN     H     0.39800     8
+    C     C       0.380     9
+    O     O      -0.380     9
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_20   
+   CA     C    gb_26   
+    C     O    gb_4    
+    C    +N    gb_9    
+   CA    CB    gb_26   
+   CB    CG    gb_26   
+   CG    CD    gb_26   
+   CD   OE1    gb_4    
+   CD   NE2    gb_9
+  NE2   HE2    gb_2
+  NE2    CZ    gb_20
+   CZ    CH    gb_26
+   CH    OF    gb_17
+   OF     P    gb_27
+    P   O1P    gb_23
+    P   O2P    gb_23
+    P    OI    gb_27
+   OI    CK    gb_17
+   CK    CL    gb_26
+   CL   OM1    gb_17
+  OM1   HM1    gb_1
+   CL   CM2    gb_26
+  CM2    ON    gb_17
+   ON    HN    gb_1
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_31   
+    H     N    CA     ga_17   
+   -C     N    CA     ga_30   
+    N    CA     C     ga_12   
+   CA     C    +N     ga_18   
+   CA     C     O     ga_29   
+    O     C    +N     ga_32   
+    N    CA    CB     ga_12   
+    C    CA    CB     ga_12   
+   CA    CB    CG     ga_14   
+   CB    CG    CD     ga_14   
+   CG    CD   OE1     ga_29   
+   CG    CD   NE2     ga_18   
+  OE1    CD   NE2     ga_32
+   CD   NE2   HE2     ga_31
+   CD   NE2    CZ     ga_30
+  HE2   NE2    CZ     ga_17
+  NE2    CZ    CH     ga_12
+   CZ    CH    OF     ga_12
+   CH    OF     P     ga_25
+   OF     P   O1P     ga_13
+   OF     P   O2P     ga_13
+   OF     P    OI     ga_4
+  O1P     P   O2P     ga_28
+  O1P     P    OI     ga_13
+  O2P     P    OI     ga_13
+    P    OI    CK     ga_25 
+   OI    CK    CL     ga_12
+   CK    CL   OM1     ga_12
+   CL   OM1   HM1     ga_11
+   CK    CL   CM2     ga_14
+  OM1    CL   CM2     ga_12
+   CL   CM2    ON     ga_12
+  CM2    ON    HN     ga_11  
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+    C    CA    +N     O     gi_1    
+   CA     N     C    CB     gi_2    
+   CD   OE1   NE2    CG     gi_1    
+  NE2    CD    CZ     H     gi_1 
+   CL   OM1   CM2    CK     gi_2       
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_4    
+   -C     N    CA     C     gd_19   
+    N    CA     C    +N     gd_20   
+    N    CA    CB    CG     gd_17   
+   CA    CB    CG    CD     gd_17   
+   CB    CG    CD   NE2     gd_20   
+   CG    CD   NE2    CZ     gd_4
+   CD   NE2    CZ    CH     gd_19
+  NE2    CZ    CH    OF     gd_17
+   CZ    CH    OF     P     gd_14
+   CH    OF     P    OI     gd_9
+   OF     P    OI    CK     gd_9
+    P    OI    CK    CL     gd_14
+   OI    CK    CL   CM2     gd_17
+   CK    CL   OM1   HM1     gd_12
+   CK    CL   CM2    ON     gd_17
+   CL   CM2    ON    HN     gd_12
