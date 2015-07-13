@@ -9,6 +9,8 @@ This code is modified for the following functions:
 
 - Compute Phi-Psi free energy via an alternate tempered metadynamics
 
+**This is not standard gromacs, don't use it for anything outside of alanine dipeptide unless you modify md.c and hellof.f to match your application!**
+
 # To Build:
 1. Go to the ABPenabledGROMACS directory.
 
