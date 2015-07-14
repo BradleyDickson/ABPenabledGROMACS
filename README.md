@@ -11,6 +11,8 @@ This code is modified for the following functions:
 
 **This is not standard gromacs, don't use it for anything outside of alanine dipeptide unless you modify md.c and hellof.f to match your application!**
 
+The biasing code can be found [here]. There are comments and the code is easy to read if you can stomach going back to 1985. You wont need a DeLorean.
+
 # To Build:
 1. Go to the ABPenabledGROMACS directory.
 
@@ -33,7 +35,13 @@ This code is modified for the following functions:
 2. Copy this ala.tpr file into the run directories: Run-mABP Run-WTmetaD Run-SHUSish and edit the params.in file to your liking
 
 3. Simulations can be launched within these run directories with ./mdrun -v -deffnm ala 
+
+4. You can adjust the parameters and see how things change. 
+
 # Outputs
+
 1. The simulations will write a file named "freeE" that contains the current free energy estimate. The Phi-Psi angles are given in the first two columns, the free energy estimate is given in the third column.
 
 2. Simulations also write a file named "fort.88" The first column is timestep, second and third columns are collective variables (angles), the fourth column is the convergence metric (equation 31 in the paper)
+
+[here]: https://github.com/BradleyDickson/ABPenabledGROMACS/blob/master/ABPenabledGROMACS/src/kernel/hello.f
