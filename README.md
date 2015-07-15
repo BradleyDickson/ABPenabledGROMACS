@@ -13,6 +13,8 @@ This code is modified for the following functions:
 
 The biasing code can be found [here]. There are comments and the code is easy to read if you can stomach going back to 1985. You wont need a DeLorean.
 
+All the things required for building simulation inputs are also included in the [ALANINEsystem] sub directory.
+
 # To Build:
 1. Go to the ABPenabledGROMACS directory.
 
@@ -45,3 +47,4 @@ The biasing code can be found [here]. There are comments and the code is easy to
 2. Simulations also write a file named "fort.88" The first column is timestep, second and third columns are collective variables (angles), the fourth column is the convergence metric (equation 31 in the paper)
 
 [here]: https://github.com/BradleyDickson/ABPenabledGROMACS/blob/master/ABPenabledGROMACS/src/kernel/hello.f
+[ALANINEsystem]: https://github.com/BradleyDickson/ABPenabledGROMACS/tree/master/ABPenabledGROMACS/ALANINEsystem
