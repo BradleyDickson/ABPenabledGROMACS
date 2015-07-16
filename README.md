@@ -13,7 +13,7 @@ This code is modified for the following functions:
 
 The biasing code can be found [here]. There are comments and the code is easy to read if you can stomach going back to 1985. You wont need a DeLorean.
 
-All the things required for building simulation inputs are also included in the [ALANINEsystem] sub directory.
+All the things required for building simulation inputs are also included in the [ALANINEsystem] subdirectory.
 
 # To Build:
 1. Go to the ABPenabledGROMACS directory.
