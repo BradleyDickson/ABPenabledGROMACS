@@ -1,6 +1,5 @@
 0.8   #b
-0.10   #c dt
-20.0    #alpha
-0      #1=WTmetaD, 0=mABP
-2.33   #SHUS-thing power
-
+0.1   #c
+40.0    #alpha
+0      #1=WTmetaD, 0=mABP, 2=muTmetaD, 3=SHUSish
+2.33    #scal

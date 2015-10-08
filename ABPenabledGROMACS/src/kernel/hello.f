@@ -10,19 +10,22 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       implicit real*8 (a-h,o-z)      
 !declare some stuff 
       real*8 dpop(2,300,300),pop(300,300)
-      real*8 dela(2,300,300),ddela(300,300)
+      real*8 dela(3,300,300),ddela(300,300)
       real*8 rfree(300,300),decon(300,300)
       real*8 alp,alp2,bee,cee,omega,DelT,pi,pi2
-      real*8 scal,bolt
+      real*8 scal,bolt,alpe,bah,bah2
       integer nbin,imabp
       save !and save the stuff
       real ff(22*3),xx(22*3)
       real*8 jaco(2,22*3) 
       real*8 deid(3,4),qa(12)
-      real*8 ave1(2)
-      real*8 orml,sumd,at1,at2
+      real*8 ave1(2),freest,s,sf
+      real*8 orml,sumd,at1,at2,bang,arg
 
       if(istep.eq.0)then
+         bah=1d0
+         bah2 = 1d0
+         bah3=0d0
          bolt = 300d0/11604.467d0 *96.48d0 !hard code TEMPERATURE!!!!!!
          nbin = 300 !number of bins in phi-psi
          open(11,file='./reffreeE') !reference free energy
@@ -38,13 +41,13 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
          read(11,*) bee !b parameter in mABP
          read(11,*) cee !c parameter in mABP (is taken as c*dt)
          read(11,*) alp !alpha
-         read(11,*) imabp !0=mABP, 1=WTmetaD
-         read(11,*) scal !SHUS power== gamma/(1-gamma)
+         read(11,*) imabp !0=mABP, 1=WTmetaD, 2=muTmetaD, 3=SHUS
+         read(11,*) scal !SHUS power== gamma/(1-gamma) or m for muTmetaD
          close(11) !close it
 
          pi=acos(-1d0) !have some pi
          pi2=pi*2d0    !twice
-
+         alpe=alpe*pi/180d0
          alp = alp*pi/180d0 !convert to rads
          alp2 = alp*alp !save the alpha^2
          dx = (pi2-0d0)/dble(nbin) !grid width
@@ -63,17 +66,22 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !--------------------------------------------------------------------
 !              this is used for the "vanishingly small" alpha,
 !              and uses a width of 2 degrees
-               dela(2,i,j)=exp(-arg2*arg2/0.0349d0**2) 
+               dela(2,i,j)=exp(-arg2*arg2/0.0349d0**2)  !for mabp stuff and muTmetaD
+!--------------------------------------------------------------------
                ddela(i,j) = dela(1,i,j)*2d0*arg2/alp2 !this is for gradient
             enddo
          enddo
-         omega = bolt*bee*cee !WTmetaD conversion
+         omega = bolt*bee*cee !WTmetaD conversion, and muTmetaD
          DelT = bolt*bee/(1d0-bee) !ditto
 
          do j=1,nbin
             do i=1,nbin                  
                pop(i,j) = 0d0   !initialize arrays
+               if(imabp.eq.0)then
                decon(i,j)=0.1d0
+               else
+               decon(i,j)=1d0
+               endif
                dpop(1,i,j) = 0d0
                dpop(2,i,j) = 0d0
             enddo
@@ -189,14 +197,22 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       ave1(2) = -cee*bee*bolt*dpop(2,ibin1,ibin2)/denom 
       elseif(imabp.eq.1)then !do WTmetaD
       ave1(1) = -dpop(1,ibin1,ibin2)
-      ave1(2) = -dpop(2,ibin1,ibin2)      
+      ave1(2) = -dpop(2,ibin1,ibin2)            
       s=exp(-pop(ibin1,ibin2)/DelT)*omega
-      else !this this better be SHUS, cause that's what the code is doing!
+      elseif(imabp.eq.2)then !do muTmetaD
+      ave1(1) = -dpop(1,ibin1,ibin2)
+      ave1(2) = -dpop(2,ibin1,ibin2)            
+         fac=bah2**scal
+         s=omega*fac/decon(ibin1,ibin2)
+      else !shus-ish
       ave1(1) = -dpop(1,ibin1,ibin2)
       ave1(2) = -dpop(2,ibin1,ibin2)      
       s=omega/(log(pop(ibin1,ibin2)+1d0)**scal+1d0)
       endif
       !update grids
+      bah = 1d80
+      bah2=1d0
+      bah3=0d0
       snorm = 0d0
       do j = 1,nbin!jst,jnd
          atj = (j-1)*dx
@@ -231,9 +247,13 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      .      *dela(1,ibin2,j)
             dpop(2,jbin,jbin2) = dpop(2,jbin,jbin2)+ddela(ibin2,j)
      .          *dela(1,ibin1,i)
-            else !WTmetaD, or SHUS, depending only on how "s" is defined
+            else !metaD, or SHUS, depending only on how "s" is defined
 !---------- Notice the array updates are different only by a factor of "s"
+            decon(jbin,jbin2)=decon(jbin,jbin2)+boomcc*boomc!for the PMF
             pop(jbin,jbin2) = pop(jbin,jbin2) + boom*s
+            if(decon(jbin,jbin2).lt.bah)bah=decon(jbin,jbin2)
+            if(decon(jbin,jbin2).gt.bah2)bah2=decon(jbin,jbin2)
+            if(pop(jbin,jbin2).gt.bah3)bah3=pop(jbin,jbin2)
             dpop(1,jbin,jbin2) = dpop(1,jbin,jbin2)+ddela(ibin1,i)*s
      .           *dela(1,ibin2,j)
             dpop(2,jbin,jbin2) = dpop(2,jbin,jbin2)+ddela(ibin2,j)*s
@@ -255,12 +275,17 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             do i=1,nbin
                if(imabp.eq.0)then !mABP
                !mABP sans-MOLLY
-                  freest=-bolt*log(decon(i,j)*pop(i,j)**(bee/(1d0-bee)))
+                  freest=-bolt*log(decon(i,j)*pop(i,j)**(bee/(1d0-bee)))               
                elseif(imabp.eq.1)then !WTmetaD
-                  freest=-pop(i,j)*(1d0+bolt/DelT)
-               else!must be SHUS=thing
+                  sf=exp(-pop(i,j)/DelT)*omega
+                  freest = bolt*log(sf)-pop(i,j)
+               elseif(imabp.eq.2)then
+                  fac=bah2**scal
+                  sf=omega*fac/decon(i,j)
+                  freest = bolt*log(sf)-pop(i,j)
+               else
                   freest=bolt*log(1d0/(log(pop(i,j)+1d0)**scal+1d0))
-     .              -pop(i,j)
+     .                 -pop(i,j)                  
                endif
                if(freest.lt.bang)bang=freest !Sets the zero
             enddo
@@ -273,29 +298,37 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             at2 = dx * (dble(j) - 0.5d0)
             do i=1,nbin           
                at1 = dx * (dble(i) - 0.5d0)
-               if(imabp.eq.0)then
+               if(imabp.eq.0)then !mABP
                !mABP sans-MOLLY
-               freest=-bolt*log(decon(i,j)*pop(i,j)**(bee/(1d0-bee)))
+                  freest=-bolt*log(decon(i,j)*pop(i,j)**(bee/(1d0-bee)))               
                elseif(imabp.eq.1)then !WTmetaD
-                  freest=-pop(i,j)*(1d0+bolt/DelT)
-               else !must be SHUS-thing
+                  sf=exp(-pop(i,j)/DelT)*omega
+                  freest = bolt*log(sf)-pop(i,j)
+               elseif(imabp.eq.2)then
+                  fac=bah2**scal
+                  sf=omega*fac/decon(i,j)
+                  freest = bolt*log(sf)-pop(i,j)
+               else
                   freest=bolt*log(1d0/(log(pop(i,j)+1d0)**scal+1d0))
-     .                 -pop(i,j)
+     .                 -pop(i,j)                  
                endif
+
                freest=freest-bang !put min to zero
                if(rfree(i,j).lt.30d0)then
                sumd=sumd+dabs(freest-rfree(i,j))
                orml = orml+1d0
                endif
-               write(89,*) at1, at2, freest !write free energy to fort.89
+               write(89,*) at1, at2, freest, decon(i,j)/bah2 !write free energy to fort.89
             enddo
             write(89,*)
          enddo
          close(89)
-!                 TimeStep, Angle1, Angle2, Convergence metric
-         write(88,*) istep, angl1, angl2, sumd/orml 
+!                 TimeStep, Angle1, Angle2, Convergence metric, hill height (not mabp)
+         write(88,*) istep, angl1, angl2, sumd/orml,  s
          call flush(88) !write to fort.88
       endif
+
+
       return
       end !end the ABP routine(s)-------------------------
 !---------------------------------------------------------

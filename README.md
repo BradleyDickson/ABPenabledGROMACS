@@ -5,7 +5,7 @@ This code is modified for the following functions:
 
 - Compute Phi-Psi free energy via mABP
 
-- Compute Phi-Psi free energy via well-tempered metadynamics
+- Compute Phi-Psi free energy via well-tempered or μ-tempered metadynamics
 
 - Compute Phi-Psi free energy via an alternate tempered metadynamics
 
@@ -18,7 +18,7 @@ All the things required for building simulation inputs are also included in the 
 # To Build:
 1. Go to the ABPenabledGROMACS directory.
 
-2. Run the ./configure command with whatever options you need to use. Use --prefix=PATH-TO-YOUR-ABPenabledGROMACS to install the executable to the location expected by the Run-mABP/ Run-WTmetaD/ and Run-SHUSish directories.
+2. Run the ./configure command with whatever options you need to use. Use --prefix=PATH-TO-YOUR-ABPenabledGROMACS to install the executable to the location expected by the Run-mABP/ Run-WTmetaD/ Run-Mu/ and Run-SHUSish directories.
 
 3. Run make clean
 
@@ -34,7 +34,7 @@ All the things required for building simulation inputs are also included in the 
 1. Go to ABPenabledGROMACS/ALANINEsystem and build a new tpr file:
  - ../bin/grompp -f md.mdp -c isob.gro -t isob.cpt -o ala.tpr
 
-2. Copy this ala.tpr file into the run directories: Run-mABP Run-WTmetaD Run-SHUSish and edit the params.in file to your liking
+2. Copy this ala.tpr file into the run directories: Run-mABP Run-WTmetaD Run-Mu Run-SHUSish and edit the params.in file to your liking
 
 3. Simulations can be launched within these run directories with ./mdrun -v -deffnm ala 
 
