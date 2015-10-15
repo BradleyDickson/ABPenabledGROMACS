@@ -13,7 +13,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       real*8 dela(3,300,300),ddela(300,300)
       real*8 rfree(300,300),decon(300,300)
       real*8 alp,alp2,bee,cee,omega,DelT,pi,pi2
-      real*8 scal,bolt,alpe,bah,bah2
+      real*8 scal,bolt,alpe,bah,bah2,are
       integer nbin,imabp
       save !and save the stuff
       real ff(22*3),xx(22*3)
@@ -43,6 +43,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
          read(11,*) alp !alpha
          read(11,*) imabp !0=mABP, 1=WTmetaD, 2=muTmetaD, 3=SHUS
          read(11,*) scal !SHUS power== gamma/(1-gamma) or m for muTmetaD
+         read(11,*) are !the r parameter for muT
          close(11) !close it
 
          pi=acos(-1d0) !have some pi
@@ -80,7 +81,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                if(imabp.eq.0)then
                decon(i,j)=0.1d0
                else
-               decon(i,j)=1d0
+               decon(i,j)=0d0
                endif
                dpop(1,i,j) = 0d0
                dpop(2,i,j) = 0d0
@@ -202,8 +203,9 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       elseif(imabp.eq.2)then !do muTmetaD
       ave1(1) = -dpop(1,ibin1,ibin2)
       ave1(2) = -dpop(2,ibin1,ibin2)            
-         fac=bah2**scal
-         s=omega*fac/decon(ibin1,ibin2)
+         fac=(are*bah2+1d0)**scal
+c         s=omega*fac/decon(ibin1,ibin2)
+         s=omega*fac/(are*decon(ibin1,ibin2)+1d0)         
       else !shus-ish
       ave1(1) = -dpop(1,ibin1,ibin2)
       ave1(2) = -dpop(2,ibin1,ibin2)      
@@ -280,8 +282,10 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                   sf=exp(-pop(i,j)/DelT)*omega
                   freest = bolt*log(sf)-pop(i,j)
                elseif(imabp.eq.2)then
-                  fac=bah2**scal
-                  sf=omega*fac/decon(i,j)
+         fac=(are*bah2+1d0)**scal
+c                  fac=bah2**scal
+c                  sf=omega*fac/decon(i,j)
+         sf=omega*fac/(are*decon(i,j)+1d0)         
                   freest = bolt*log(sf)-pop(i,j)
                else
                   freest=bolt*log(1d0/(log(pop(i,j)+1d0)**scal+1d0))
@@ -305,8 +309,10 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
                   sf=exp(-pop(i,j)/DelT)*omega
                   freest = bolt*log(sf)-pop(i,j)
                elseif(imabp.eq.2)then
-                  fac=bah2**scal
-                  sf=omega*fac/decon(i,j)
+         fac=(are*bah2+1d0)**scal
+c                  fac=bah2**scal
+c                  sf=omega*fac/decon(i,j)
+         sf=omega*fac/(are*decon(i,j)+1d0)         
                   freest = bolt*log(sf)-pop(i,j)
                else
                   freest=bolt*log(1d0/(log(pop(i,j)+1d0)**scal+1d0))

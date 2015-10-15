@@ -2,4 +2,5 @@
 0.1   #c
 40.0    #alpha
 1      #1=WTmetaD, 0=mABP, 2=muTmetaD, 3=SHUSish
-2.33    #scal
+0.0   #scal or m for muT
+0.2  #r for muT
