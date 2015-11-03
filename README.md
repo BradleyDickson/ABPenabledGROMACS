@@ -1,5 +1,5 @@
 # ABPenabledGROMACS
-A hacked, hardwired GROMACS-4.5.5 that runs mABP, well-tempered metadynamics, or a SHUS-based tempered metadynamics for alanine dipeptide. 
+A hacked, hardwired GROMACS-4.5.5 that runs mABP, well-tempered metadynamics, μ-tempered metadynamics, or a SHUS-based tempered metadynamics for alanine dipeptide. While the name might not stick, you can find out about μ-tempering on the [arxiv].
 
 This code is modified for the following functions:
 
@@ -48,3 +48,4 @@ All the things required for building simulation inputs are also included in the 
 
 [here]: https://github.com/BradleyDickson/ABPenabledGROMACS/blob/master/ABPenabledGROMACS/src/kernel/hello.f
 [ALANINEsystem]: https://github.com/BradleyDickson/ABPenabledGROMACS/tree/master/ABPenabledGROMACS/ALANINEsystem
+[arxiv]: http://arxiv.org/abs/1511.00558
