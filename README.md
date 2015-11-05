@@ -44,7 +44,7 @@ All the things required for building simulation inputs are also included in the 
 
 1. The simulations will write a file named "freeE" that contains the current free energy estimate. The Phi-Psi angles are given in the first two columns, the free energy estimate is given in the third column.
 
-2. Simulations also write a file named "fort.88" The first column is timestep, second and third columns are collective variables (angles), the fourth column is the convergence metric (equation 31 in the paper)
+2. Simulations also write a file named "fort.88" The first column is timestep, second and third columns are collective variables (angles), the fourth column is the convergence metric (equation 28 in the paper)
 
 [here]: https://github.com/BradleyDickson/ABPenabledGROMACS/blob/master/ABPenabledGROMACS/src/kernel/hello.f
 [ALANINEsystem]: https://github.com/BradleyDickson/ABPenabledGROMACS/tree/master/ABPenabledGROMACS/ALANINEsystem
